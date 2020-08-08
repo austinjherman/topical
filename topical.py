@@ -106,15 +106,16 @@ def main():
         infile_as_str = f.read()
 
     # Standardize data
-    infile_as_str = re.sub('[,.!?]', '', infile_as_str)  # remove punctuation
-    infile_as_str = infile_as_str.lower()  # lowercase everything
-    infile_as_word_list = infile_as_str.split(' ')  # get a list ready
+    data = infile_as_str.split('\n')
+    data = list(map(lambda x: re.sub("[,.!?';]", '', x), data))  # remove punctuation
+    data = list(map(lambda x: x.lower(), data))  # lowercase everything
+    data_as_string = ','.join(data)
     count_vectorizer = sktext.CountVectorizer(stop_words='english')
-    count_data = count_vectorizer.fit_transform(infile_as_word_list)
+    count_data = count_vectorizer.fit_transform(data)
 
     # Produce a wordcloud if desired
     if(cli.args.create_wordcloud):
-        create_wordcloud(infile_as_str)
+        create_wordcloud(data_as_string)
 
     # Produce a graph of common words if desired
     if(cli.args.graph_common_words):
@@ -122,7 +123,7 @@ def main():
 
     # Tweak the two parameters below
     number_topics = 10
-    number_words = 8
+    number_words = 10
 
     # Create and fit the LDA model
     lda = LDA(n_components=number_topics, n_jobs=-1)
