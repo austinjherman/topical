@@ -107,7 +107,7 @@ def main():
 
     # Standardize data
     data = infile_as_str.split('\n')
-    data = list(map(lambda x: re.sub("[,.!?';]", '', x), data))  # remove punctuation
+    data = list(map(lambda x: re.sub("[,.!?';-]", '', x), data))  # remove punctuation
     data = list(map(lambda x: x.lower(), data))  # lowercase everything
     data_as_string = ','.join(data)
     count_vectorizer = sktext.CountVectorizer(stop_words='english')
