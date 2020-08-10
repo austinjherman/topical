@@ -33,9 +33,6 @@ class cli:
 
         self.args = parser.parse_args(cli_args)
 
-    def validate_args(self):
-        self.validate_infile()
-
 
 cli = cli(sys.argv[1:])
 cli.args.outdir if not cli.args.outdir else cli.args.outdir.strip('/')
