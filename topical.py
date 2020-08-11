@@ -122,8 +122,8 @@ def main():
         graph_common_words(count_data, count_vectorizer)
 
     # Tweak the two parameters below
-    number_topics = 10
-    number_words = 10
+    number_topics = int(cli.args.number_topics)
+    number_words = int(cli.args.words_per_topic)
 
     # Create and fit the LDA model
     lda = LDA(n_components=number_topics, n_jobs=-1)
