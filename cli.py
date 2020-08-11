@@ -31,6 +31,12 @@ class cli:
         parser.add_argument('-ksw', '--keep-stop-words', action="store_true",
                             help='Do you want to graph common words?')
 
+        parser.add_argument('-wpt', '--words-per-topic', default=10,
+                            help='How many words per topic do you want?')
+
+        parser.add_argument('-nt', '--number-topics', default=10,
+                            help='How many topics do you want?')
+
         self.args = parser.parse_args(cli_args)
 
 
