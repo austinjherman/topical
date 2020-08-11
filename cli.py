@@ -37,6 +37,9 @@ class cli:
         parser.add_argument('-nt', '--number-topics', default=10,
                             help='How many topics do you want?')
 
+        parser.add_argument('-dd', '--document-delimiter', type=str, default="\n",
+                            help='What is your document delimiter?')
+
         self.args = parser.parse_args(cli_args)
 
 

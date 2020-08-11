@@ -106,7 +106,8 @@ def main():
         infile_as_str = f.read()
 
     # Standardize data
-    data = infile_as_str.split('\n')
+    document_delimiter = cli.args.document_delimiter
+    data = infile_as_str.split(document_delimiter)
     data = list(map(lambda x: re.sub("[,.!?';-]", '', x), data))  # remove punctuation
     data = list(map(lambda x: x.lower(), data))  # lowercase everything
     data_as_string = ','.join(data)
